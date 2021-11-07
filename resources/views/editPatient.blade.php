@@ -9,8 +9,8 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <h2 class="text-2xl text-center">Registrar Paciente</h2>
-                <form method="POST" action="{{ route('createPatient') }}">
+                <h2 class="text-2xl text-center">Actualizar Paciente</h2>
+                <form method="POST" action="{{ route('updatePatient') }}">
                     @csrf
                     <x-alert />
                     @if ($errors->any())
@@ -46,25 +46,25 @@
                     <div>
                         <x-label for="cc" :value="__('CC')" />
 
-                        <x-input id="cc" class="block mt-1 w-full" type="text" name="cc" :value="old('cc')" required autofocus />
+                        <x-input id="cc" class="block mt-1 w-full" type="text" name="cc" :value="$cc" required autofocus />
                     </div>
                     <!-- Name -->
                     <div class="mt-4">
                         <x-label for="name" :value="__('Nombres')" />
 
-                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="$name" required autofocus />
                     </div>
                     <div class="mt-4">
                         <x-label for="last_name" :value="__('Apellidos')" />
 
-                        <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
+                        <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="$last_name" required autofocus />
                     </div>
 
                     <!-- Email Address -->
                     <div class="mt-4">
                         <x-label for="email" :value="__('Email')" />
 
-                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="$email" required />
                     </div>
 
                     <!-- number -->
@@ -74,14 +74,15 @@
                         <x-input id="number" class="block mt-1 w-full"
                                         type="number"
                                         name="number"
-                                        required autocomplete="number" />
+                                        required autocomplete="number"
+                                        :value="$number" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
                         
 
                         <x-button class="ml-4">
-                            {{ __('Crear') }}
+                            {{ __('Actualizar') }}
                         </x-button>
                     </div>
                 </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\patient;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[patient::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/crear-paciente', function () {
     return view('newPatient');
 })->middleware(['auth'])->name('newPatient');
-
+Route::post('/new-patient',[patient::class, 'store'])->middleware(['auth'])->name('createPatient');
+Route::get('/editarPaciente', [patient::class, 'edit'])->middleware(['auth'])->name('editPatient');
+Route::post('/edit-patient',[patient::class, 'update'])->middleware(['auth'])->name('updatePatient');
+ 
 require __DIR__.'/auth.php';
