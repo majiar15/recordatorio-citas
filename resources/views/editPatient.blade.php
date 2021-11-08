@@ -12,7 +12,7 @@
                 <h2 class="text-2xl text-center">Actualizar Paciente</h2>
                 <form method="POST" action="{{ route('updatePatient') }}">
                     @csrf
-                    <x-alert />
+                    <x-alert type="normal" />
                     @if ($errors->any())
                     
                         

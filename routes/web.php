@@ -25,5 +25,7 @@ Route::get('/crear-paciente', function () {
 Route::post('/new-patient',[patient::class, 'store'])->middleware(['auth'])->name('createPatient');
 Route::get('/editarPaciente', [patient::class, 'edit'])->middleware(['auth'])->name('editPatient');
 Route::post('/edit-patient',[patient::class, 'update'])->middleware(['auth'])->name('updatePatient');
- 
+
+Route::get('/delete/{id}', [patient::class, 'destroy'])->middleware(['auth'])->name('deletePatient');
+
 require __DIR__.'/auth.php';

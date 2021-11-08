@@ -4,24 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
+class modal extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-        /**
-     * The alert typealert.
-     *
-     * @var string
-     */
-    public $type;
-
-    public function __construct($type)
+    public function __construct()
     {
         //
-        $this->type = $type;
     }
 
     /**
@@ -31,6 +23,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.modal');
     }
 }

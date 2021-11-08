@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostCreatePatient;
-use App\Models\Patient as modelPatient;
+use App\Models\Patient as ModelPatient;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class patient extends Controller
         
     }
     public function index(Request $request) {
-        $patients = modelPatient::all();
+        $patients = ModelPatient::paginate(9);
         return view('dashboard',['patients' => $patients]);
     }
     public function store(PostCreatePatient $request)
@@ -29,7 +29,7 @@ class patient extends Controller
             $newMon = $date["mon"]+1;
             $prox_cita = $date["mday"].'/'.$newMon.'/'.$date["year"];
         }
-        $patient = modelPatient::create([
+        $patient = ModelPatient::create([
             'cc' => $request->cc,
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -53,7 +53,7 @@ class patient extends Controller
         $request->validate([
             'id' => 'required'
         ]);
-        $patient = modelPatient::find($request->id);
+        $patient = ModelPatient::find($request->id);
         return view('editPatient',[
             'patient' => true,
             'cc' => $patient->cc,
@@ -71,7 +71,7 @@ class patient extends Controller
             'email' => 'required',
             'number' => 'required',
         ]);
-        $patient = modelPatient::where('cc',$request->cc)->first();
+        $patient = ModelPatient::where('cc',$request->cc)->first();
         $patient->cc = $request->cc;
         $patient->name = $request->name;
         $patient->last_name = $request->last_name;
@@ -82,4 +82,13 @@ class patient extends Controller
         return redirect()->route('editPatient', ['id' => $patient->id])->with('message', 'Paciente Actualizado correctamente');
 
     }
+    public function destroy(Request  $request) {
+
+        $patient = ModelPatient::find($request->id)->first();
+        $patient->delete();
+
+        return redirect()->route('dashboard')->with('message', 'Paciente Eliminado');
+
+    }
+ 
 }
