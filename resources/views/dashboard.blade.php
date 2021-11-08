@@ -85,7 +85,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 py-3 text-ms font-semibold border">{{$patient->updated_at}}</td>
+                                            <td class="px-4 py-3 text-ms font-semibold border">{{$patient->proxima_cita}}</td>
                                             <td class="py-3 px-6 text-center border">
                                                 <div class="flex item-center justify-center">
 

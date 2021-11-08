@@ -20,7 +20,7 @@ class Patient extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->string('proxima_cita');
+            $table->date('proxima_cita');
             $table->bigInteger('number')->unique();
             $table->timestamps();
         });

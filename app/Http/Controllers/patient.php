@@ -21,14 +21,8 @@ class patient extends Controller
     {
       
         $request->validated();
-        $date = getdate();
-        if($date["mon"] == 12){
-            $prox_cita = $date["mday"].'/1'.'/'.$date["year"]+1;
-
-        }else{
-            $newMon = $date["mon"]+1;
-            $prox_cita = $date["mday"].'/'.$newMon.'/'.$date["year"];
-        }
+        $prox_cita  =date("y-m-d", mktime(0, 0, 0, date("m")+1, date("d"),   date("Y")));
+        
         $patient = ModelPatient::create([
             'cc' => $request->cc,
             'name' => $request->name,

@@ -12,10 +12,8 @@
                 <h2 class="text-2xl text-center">Registrar Paciente</h2>
                 <form method="POST" action="{{ route('createPatient') }}">
                     @csrf
-                    <x-alert />
+                    <x-alert  type="normal"/>
                     @if ($errors->any())
-                    
-                        
                                 @foreach ($errors->all() as $error)
                                 
                                      <div class="flex justify-start">
